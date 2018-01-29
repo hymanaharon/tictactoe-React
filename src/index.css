@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch');
+
+.gameP{
+  background-image: url(https://images.template.net/wp-content/uploads/2016/04/23094449/Black-Colored-Chalkboard-Background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding-bottom: 20px;
+
+}
+.overlay {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 55px;
+  border: 5px;
+  width: 100%;
+  height:100%;
+  padding-top: 20%;
+  text-align: center;
+  color: white;
+  background-color: rgba(0,0,10,0.75);
+  position: absolute;
+  margin-top: -10%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.status{
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 10%;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.gameLayout{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.square{
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 50px;
+  border: 5px dashed white;
+  border-collapse: collapse;
+  width: 100px;
+  height:100px;
+  text-align: center;
+  color: white;
+  background-color: inherit;
+  float:left;
+
+}
+
+.square:hover {
+  cursor: pointer;
+  border: solid;
+  border-collapse: collapse;
+}
+.square:focus {
+  outline: none;
+}
+
+.x {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 58px;
+  background-color: rgba(0,0,10,0);
+  color: white;
+  border: none;
+}
+.o {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 58px;
+  background-color: rgba(0,0,10,0);
+  color: white;
+  border: none;
+}
+
+.x:hover{
+  cursor: pointer;
+  color: #ccffff;
+}
+
+.o:hover{
+  cursor: pointer;
+  color: #ccffff;
+  }
