@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Overlay from './overlay.js'
+import XIsNext from './xIsNext.js'
 
 function Square(props) {
   function clickHandler(e){
@@ -21,26 +22,30 @@ function Square(props) {
 
 
 class Board extends Component {
+
   constructor(props) {
     super(props);
-    this.state = {
+    const firstLetter = this.props.startingLetter === 'X'? true : false;
+      this.state = {
       squares: Array(9).fill(null),
-      xIsNext: true,
-      disabled: false,
-    };
+      xIsNext: firstLetter
+        };
   }
 
+
   handleClick(i) {
+    this.forceUpdate();
     const squares = this.state.squares.slice();
     squares[i] = this.state.xIsNext ? 'X' : 'O';
       this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
-      disabled: true,
+
     });
   }
 
   renderSquare(i) {
+
     return (
       <Square
         value={this.state.squares[i]}
@@ -52,12 +57,12 @@ class Board extends Component {
 
 
   render() {
-    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'} `;
+
 
     return(
        <div>
       <div className="gameP">
-      <div className= "status">{status}</div>
+
       <div className="gameLayout">
        <div>
          <div className="board-row">
@@ -85,16 +90,39 @@ class Board extends Component {
 
 
 class Game extends Component {
+  constructor() {
+     super()
+     this.state = {
+       overlayIsVisible: true,
+       startingLetter: null,
+       oIsNext: null
+     }
+   }
+
+   toggleOverlay = (letter) => {
+       this.setState({
+     startingLetter: letter === 'X' ? 'X' : 'O',
+     overlayIsVisible: !this.state.overlayIsVisible,
+     oIsNext: letter === 'O' ? true : false
+      })
+   }
+
+
+
+
   render() {
+    console.log('Current overlayIsVisible', this.state.overlayIsVisible)
+    console.log('Starting letter', this.state.startingLetter)
+    console.log('oIsNext', this.state.oIsNext);
     return (
-
-      <div className="game">
-
+    <div className="game">
+      {this.state.overlayIsVisible && <Overlay toggleOverlay={this.toggleOverlay} />}
+      <div className= "status"><XIsNext start ={this.state.startingLetter} /></div>
         <div className="game-board">
-          <Overlay />
-          <Board />
+
+          <Board oIsNext={this.state.startingLetter}/>
         </div>
-      </div>
+    </div>
     );
   }
 }

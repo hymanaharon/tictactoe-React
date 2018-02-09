@@ -1,34 +1,33 @@
 import React, {Component} from 'react';
 
 
-
-function X(props) {
-
-  return (
-    <button className="x" onClick={props.onClick}>
-      X
-    </button>
-  );
-}
-
-function O(props) {
-
-  return (
-    <button className="o" onClick={props.onClick}>
-      O
-    </button>
-  );
-}
-
 class Overlay extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: true
+    };
+  }
 
- render(){
-   return(
-     <div className = "overlay">
-      To start Choose <X /> or <O />
-     </div>
-   );
- }
+  handleClick(letter){
+     this.props.toggleOverlay(letter);
+      }
+
+  render(){
+    return(
+      <div className = "overlay" >
+        To start Choose
+        <button
+        className="x"
+        onClick={()=>this.handleClick('X')}
+        > &nbsp;X</button> or
+        <button
+        className="o"
+        onClick={()=>this.handleClick('O')}
+        >&nbsp;O</button>
+      </div>
+    );
+  }
 }
 
 export default Overlay;
