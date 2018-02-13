@@ -22,19 +22,17 @@ function Square(props) {
 
 
 class Board extends Component {
-
   constructor(props) {
     super(props);
-    const firstLetter = this.props.startingLetter === 'X'? true : false;
+
       this.state = {
       squares: Array(9).fill(null),
-      xIsNext: firstLetter
-        };
+      xIsNext: true
+
+    };
   }
 
-
   handleClick(i) {
-    this.forceUpdate();
     const squares = this.state.squares.slice();
     squares[i] = this.state.xIsNext ? 'X' : 'O';
       this.setState({
@@ -94,35 +92,30 @@ class Game extends Component {
      super()
      this.state = {
        overlayIsVisible: true,
-       startingLetter: null,
-       oIsNext: null
+       startingLetter: ''
      }
    }
 
    toggleOverlay = (letter) => {
        this.setState({
      startingLetter: letter === 'X' ? 'X' : 'O',
-     overlayIsVisible: !this.state.overlayIsVisible,
-     oIsNext: letter === 'O' ? true : false
-      })
-   }
-
-
+     overlayIsVisible: !this.state.overlayIsVisible
+   })
+ }
 
 
   render() {
     console.log('Current overlayIsVisible', this.state.overlayIsVisible)
     console.log('Starting letter', this.state.startingLetter)
-    console.log('oIsNext', this.state.oIsNext);
+
     return (
-    <div className="game">
-      {this.state.overlayIsVisible && <Overlay toggleOverlay={this.toggleOverlay} />}
+      <div className="game">
       <div className= "status"><XIsNext start ={this.state.startingLetter} /></div>
         <div className="game-board">
-
-          <Board oIsNext={this.state.startingLetter}/>
+          {this.state.overlayIsVisible && <Overlay toggleOverlay={this.toggleOverlay} />}
+          <Board />
         </div>
-    </div>
+      </div>
     );
   }
 }
