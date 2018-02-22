@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 
 class XIsNext extends Component {
 
@@ -9,3 +9,4 @@ class XIsNext extends Component {
 }
 
 export default XIsNext;
+*/
